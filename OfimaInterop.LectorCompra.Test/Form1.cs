@@ -42,8 +42,9 @@ namespace OfimaInterop.LectorCompra.Test
         private void button1_Click(object sender, EventArgs e)
         {
             LectorXML lector = new LectorXML();
-            var Emisor = lector.LectorCompras(TxtRuta.Text, 1017224525);
-            
+            var Respuesta = lector.LectorCompras(TxtRuta.Text, 1017224525);
+
+            MessageBox.Show(Respuesta);
             //DgvVista.Columns.Add("nit", "Nit");
             //DgvVista.Columns.Add("nombre", "Nombre");
             //DgvVista.Columns.Add("direccion", "Direccion");

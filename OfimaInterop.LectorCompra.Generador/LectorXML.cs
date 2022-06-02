@@ -29,15 +29,20 @@ namespace OfimaInterop.LectorCompra.Generador
         //Metodo para todo el proceso de el lector de compras 
         public string LectorCompras(string Carpeta, int Nit)
         {
-
+            //Se inicializa variable que almacenara el nit del XML.
             int NitXML = 0;
 
             //Llama el metodo encargado de identificar los diferentes xml en la ruta
             foreach (var item in ObtenerXML(Carpeta))
             {
+                //Se inicializa la informacion en el log
+                LogSeguimientoLectorCompra("-----------------------------------------------------------------------------------------", Ruta);
+                LogSeguimientoLectorCompra("--Inicia Analisis para el documento : ( " + item.nombreXML + ".xml).", Ruta);
 
+                //Se captura el Nit del adquiriente en el XML
                 NitXML = LectorAdquiriente(item.RutaXML);
 
+                //Se valida si el Nit del XML, corresponde con el nit de la empresa, para gestionar XML.
                 if (Nit == NitXML)
                 {
                     //Se capturan los datos del emisor
@@ -45,7 +50,8 @@ namespace OfimaInterop.LectorCompra.Generador
                 }
                 else
                 {
-                    LogSeguimientoLectorCompra("--No se trata el XML: (" + item.RutaXML + "), Nit no corresponde a el de la entidad.", Ruta);
+                    //Mensaje que indica que el documento no se examina, por que no es una factura de compra
+                    LogSeguimientoLectorCompra("--No se trata el XML: ( " + item.nombreXML + ".xml ), Nit no corresponde con el almacenado en NITCIA.", Ruta);
                 }
 
             }
@@ -60,7 +66,7 @@ namespace OfimaInterop.LectorCompra.Generador
             List<Xml> NewXML = new List<Xml>();       
 
             //Se agregan los archivos encontrados a un array
-            string[] Files = Directory.GetFiles(Carpeta, "*.xml");
+            string[] Files = Directory.GetFiles(Carpeta,"*.xml");
             
             //Se recorre el array con los Xml capturados y se agregan a la List.
             foreach (string File in Files)
@@ -69,6 +75,7 @@ namespace OfimaInterop.LectorCompra.Generador
                 NewXML.Add(new Xml
                 {
                     RutaXML = File,
+                    nombreXML = stringBetween(File,Carpeta,".xml"),
                 });
             }
 
@@ -90,7 +97,7 @@ namespace OfimaInterop.LectorCompra.Generador
             ReadXML.Load(RutaXML);
             
             //Se guarda mensaje en log.
-            LogSeguimientoLectorCompra("--Inicia proceso de validacion de documento Adquiriente: (" + RutaXML + ").", Ruta);
+            LogSeguimientoLectorCompra("--Inicia validacion de documento Adquiriente.", Ruta);
 
             //Se comienza a rrecorrer los nodo del XML.
             foreach (XmlNode N1 in ReadXML.DocumentElement.ChildNodes)
@@ -123,7 +130,7 @@ namespace OfimaInterop.LectorCompra.Generador
             }
 
             //Se guarda mensaje en log.
-            LogSeguimientoLectorCompra("--Finaliza proceso de captura de documento adquiriente: (" + NewAdquiriente.Nit + ").", Ruta);
+            LogSeguimientoLectorCompra("--Se captura de documento del adquiriente: (" + NewAdquiriente.Nit + ").", Ruta);
 
             //Se retorna el objeto adquiriente.
             return NewAdquiriente.Nit;
@@ -143,7 +150,7 @@ namespace OfimaInterop.LectorCompra.Generador
             ReadXML.Load(RutaXML);
 
             //Se comienza a llenar la informacion por archivo
-            LogSeguimientoLectorCompra("--Inicia proceso de extraer informacion para el documento: (" + RutaXML + ").", Ruta);
+            LogSeguimientoLectorCompra("--Inicia proceso de extraer informacion del XML.", Ruta);
 
             //Se recorre el XML, para capturar los datos del emisor
             foreach (XmlNode N1 in ReadXML.DocumentElement.ChildNodes)
@@ -185,7 +192,7 @@ namespace OfimaInterop.LectorCompra.Generador
             ReadXML.LoadXml(NewXML);
 
             //Se comienza a llenar la informacion por archivo
-            LogSeguimientoLectorCompra("--Inicia proceso de extraer informacion Emisor.", Ruta);
+            LogSeguimientoLectorCompra("--Inicia proceso de extraer informacion del EMISOR.", Ruta);
 
             //Se inicia el ciclo para tomar la informacion, correspondiente al emisor
             foreach (XmlNode N1 in ReadXML.DocumentElement.ChildNodes)
@@ -299,7 +306,7 @@ namespace OfimaInterop.LectorCompra.Generador
             }
 
             //Se comienza a llenar la informacion por archivo
-            LogSeguimientoLectorCompra("--Finaliza proceso de extraer informacion Emisor :", Ruta);
+            LogSeguimientoLectorCompra("--Finaliza proceso de extraer informacion del EMISOR.", Ruta);
 
             return emisor;
 
@@ -352,7 +359,19 @@ namespace OfimaInterop.LectorCompra.Generador
             }
         }
 
+        public static string stringBetween(string Source, string Start, string End)
+        {
+            string result = "";
+            if (Source.Contains(Start) && Source.Contains(End))
+            {
+                int StartIndex = Source.IndexOf(Start, 0) + Start.Length;
+                int EndIndex = Source.IndexOf(End, StartIndex);
+                result = Source.Substring(StartIndex, EndIndex - StartIndex);
+                return result;
+            }
 
+            return result;
+        }
 
     }
 }
