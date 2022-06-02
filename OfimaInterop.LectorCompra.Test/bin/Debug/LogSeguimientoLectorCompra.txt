@@ -1,0 +1,264 @@
+
+
+2/06/2022 1:40:44 p. m.
+--Inicia proceso de validacion de documento Adquiriente: (C:\Users\Hogar\Documents\Diego\ofima\Desarrollo\Lector Compra\XML\ad09002198340922200068fb3.xml).
+
+
+2/06/2022 1:44:25 p. m.
+--Finaliza proceso de captura de documento adquiriente: (70977889).
+
+
+2/06/2022 1:45:00 p. m.
+--No se trata el XML: (C:\Users\Hogar\Documents\Diego\ofima\Desarrollo\Lector Compra\XML\ad09002198340922200068fb3.xml), Nit no corresponde a el de la entidad.
+
+
+2/06/2022 1:45:36 p. m.
+--Inicia proceso de validacion de documento Adquiriente: (C:\Users\Hogar\Documents\Diego\ofima\Desarrollo\Lector Compra\XML\ad09004709460272137630217172455055.xml).
+
+
+2/06/2022 1:46:35 p. m.
+--Finaliza proceso de captura de documento adquiriente: (70977889).
+
+
+2/06/2022 1:46:53 p. m.
+--No se trata el XML: (C:\Users\Hogar\Documents\Diego\ofima\Desarrollo\Lector Compra\XML\ad09004709460272137630217172455055.xml), Nit no corresponde a el de la entidad.
+
+
+2/06/2022 1:47:43 p. m.
+--Inicia proceso de validacion de documento Adquiriente: (C:\Users\Hogar\Documents\Diego\ofima\Desarrollo\Lector Compra\XML\SAPHETY_ad08001323020252200000425.xml).
+
+
+2/06/2022 1:48:50 p. m.
+--Finaliza proceso de captura de documento adquiriente: (1017224525).
+
+
+2/06/2022 1:49:15 p. m.
+--Inicia proceso de extraer informacion para el documento: (C:\Users\Hogar\Documents\Diego\ofima\Desarrollo\Lector Compra\XML\SAPHETY_ad08001323020252200000425.xml).
+
+
+2/06/2022 1:49:24 p. m.
+--Inicia adecuacion del Nodo resultante 
+
+
+2/06/2022 1:49:24 p. m.
+--Inicia proceso de extraer informacion Emisor.
+
+
+2/06/2022 1:49:24 p. m.
+--Finaliza proceso de extraer informacion Emisor :
+
+
+2/06/2022 1:49:27 p. m.
+--Inicia proceso de validacion de documento Adquiriente: (C:\Users\Hogar\Documents\Diego\ofima\Desarrollo\Lector Compra\XML\VILA-ad08110020620172200000014.xml).
+
+
+2/06/2022 1:49:27 p. m.
+--Finaliza proceso de captura de documento adquiriente: (1017224525).
+
+
+2/06/2022 1:49:27 p. m.
+--Inicia proceso de extraer informacion para el documento: (C:\Users\Hogar\Documents\Diego\ofima\Desarrollo\Lector Compra\XML\VILA-ad08110020620172200000014.xml).
+
+
+2/06/2022 1:49:27 p. m.
+--Inicia adecuacion del Nodo resultante 
+
+
+2/06/2022 1:49:27 p. m.
+--Inicia proceso de extraer informacion Emisor.
+
+
+2/06/2022 1:49:27 p. m.
+--Finaliza proceso de extraer informacion Emisor :
+
+
+2/06/2022 1:50:18 p. m.
+--Inicia proceso de validacion de documento Adquiriente: (C:\Users\Hogar\Documents\Diego\ofima\Desarrollo\Lector Compra\XML\ad09002198340922200068fb3.xml).
+
+
+2/06/2022 1:50:18 p. m.
+--Finaliza proceso de captura de documento adquiriente: (70977889).
+
+
+2/06/2022 1:50:18 p. m.
+--No se trata el XML: (C:\Users\Hogar\Documents\Diego\ofima\Desarrollo\Lector Compra\XML\ad09002198340922200068fb3.xml), Nit no corresponde a el de la entidad.
+
+
+2/06/2022 1:50:18 p. m.
+--Inicia proceso de validacion de documento Adquiriente: (C:\Users\Hogar\Documents\Diego\ofima\Desarrollo\Lector Compra\XML\ad09004709460272137630217172455055.xml).
+
+
+2/06/2022 1:50:18 p. m.
+--Finaliza proceso de captura de documento adquiriente: (70977889).
+
+
+2/06/2022 1:50:18 p. m.
+--No se trata el XML: (C:\Users\Hogar\Documents\Diego\ofima\Desarrollo\Lector Compra\XML\ad09004709460272137630217172455055.xml), Nit no corresponde a el de la entidad.
+
+
+2/06/2022 1:50:18 p. m.
+--Inicia proceso de validacion de documento Adquiriente: (C:\Users\Hogar\Documents\Diego\ofima\Desarrollo\Lector Compra\XML\SAPHETY_ad08001323020252200000425.xml).
+
+
+2/06/2022 1:50:18 p. m.
+--Finaliza proceso de captura de documento adquiriente: (1017224525).
+
+
+2/06/2022 1:50:18 p. m.
+--Inicia proceso de extraer informacion para el documento: (C:\Users\Hogar\Documents\Diego\ofima\Desarrollo\Lector Compra\XML\SAPHETY_ad08001323020252200000425.xml).
+
+
+2/06/2022 1:50:18 p. m.
+--Inicia adecuacion del Nodo resultante 
+
+
+2/06/2022 1:50:18 p. m.
+--Inicia proceso de extraer informacion Emisor.
+
+
+2/06/2022 1:50:18 p. m.
+--Finaliza proceso de extraer informacion Emisor :
+
+
+2/06/2022 1:50:18 p. m.
+--Inicia proceso de validacion de documento Adquiriente: (C:\Users\Hogar\Documents\Diego\ofima\Desarrollo\Lector Compra\XML\VILA-ad08110020620172200000014.xml).
+
+
+2/06/2022 1:50:18 p. m.
+--Finaliza proceso de captura de documento adquiriente: (1017224525).
+
+
+2/06/2022 1:50:18 p. m.
+--Inicia proceso de extraer informacion para el documento: (C:\Users\Hogar\Documents\Diego\ofima\Desarrollo\Lector Compra\XML\VILA-ad08110020620172200000014.xml).
+
+
+2/06/2022 1:50:18 p. m.
+--Inicia adecuacion del Nodo resultante 
+
+
+2/06/2022 1:50:18 p. m.
+--Inicia proceso de extraer informacion Emisor.
+
+
+2/06/2022 1:50:18 p. m.
+--Finaliza proceso de extraer informacion Emisor :
+
+
+2/06/2022 1:50:38 p. m.
+--Inicia proceso de validacion de documento Adquiriente: (C:\Users\Hogar\Documents\Diego\ofima\Desarrollo\Lector Compra\XML\ad09002198340922200068fb3.xml).
+
+
+2/06/2022 1:50:38 p. m.
+--Finaliza proceso de captura de documento adquiriente: (70977889).
+
+
+2/06/2022 1:50:38 p. m.
+--No se trata el XML: (C:\Users\Hogar\Documents\Diego\ofima\Desarrollo\Lector Compra\XML\ad09002198340922200068fb3.xml), Nit no corresponde a el de la entidad.
+
+
+2/06/2022 1:50:38 p. m.
+--Inicia proceso de validacion de documento Adquiriente: (C:\Users\Hogar\Documents\Diego\ofima\Desarrollo\Lector Compra\XML\ad09004709460272137630217172455055.xml).
+
+
+2/06/2022 1:50:38 p. m.
+--Finaliza proceso de captura de documento adquiriente: (70977889).
+
+
+2/06/2022 1:50:38 p. m.
+--No se trata el XML: (C:\Users\Hogar\Documents\Diego\ofima\Desarrollo\Lector Compra\XML\ad09004709460272137630217172455055.xml), Nit no corresponde a el de la entidad.
+
+
+2/06/2022 1:50:38 p. m.
+--Inicia proceso de validacion de documento Adquiriente: (C:\Users\Hogar\Documents\Diego\ofima\Desarrollo\Lector Compra\XML\SAPHETY_ad08001323020252200000425.xml).
+
+
+2/06/2022 1:50:38 p. m.
+--Finaliza proceso de captura de documento adquiriente: (1017224525).
+
+
+2/06/2022 1:50:38 p. m.
+--Inicia proceso de extraer informacion para el documento: (C:\Users\Hogar\Documents\Diego\ofima\Desarrollo\Lector Compra\XML\SAPHETY_ad08001323020252200000425.xml).
+
+
+2/06/2022 1:50:38 p. m.
+--Inicia adecuacion del Nodo resultante 
+
+
+2/06/2022 1:50:38 p. m.
+--Inicia proceso de extraer informacion Emisor.
+
+
+2/06/2022 1:50:38 p. m.
+--Finaliza proceso de extraer informacion Emisor :
+
+
+2/06/2022 1:50:38 p. m.
+--Inicia proceso de validacion de documento Adquiriente: (C:\Users\Hogar\Documents\Diego\ofima\Desarrollo\Lector Compra\XML\VILA-ad08110020620172200000014.xml).
+
+
+2/06/2022 1:50:38 p. m.
+--Finaliza proceso de captura de documento adquiriente: (1017224525).
+
+
+2/06/2022 1:50:38 p. m.
+--Inicia proceso de extraer informacion para el documento: (C:\Users\Hogar\Documents\Diego\ofima\Desarrollo\Lector Compra\XML\VILA-ad08110020620172200000014.xml).
+
+
+2/06/2022 1:50:38 p. m.
+--Inicia adecuacion del Nodo resultante 
+
+
+2/06/2022 1:50:38 p. m.
+--Inicia proceso de extraer informacion Emisor.
+
+
+2/06/2022 1:50:38 p. m.
+--Finaliza proceso de extraer informacion Emisor :
+
+
+2/06/2022 1:51:24 p. m.
+--Inicia proceso de validacion de documento Adquiriente: (C:\Users\Hogar\Documents\Diego\ofima\Desarrollo\Lector Compra\XML\SAPHETY_ad08001323020252200000425.xml).
+
+
+2/06/2022 1:51:24 p. m.
+--Finaliza proceso de captura de documento adquiriente: (1017224525).
+
+
+2/06/2022 1:51:48 p. m.
+--Inicia proceso de extraer informacion para el documento: (C:\Users\Hogar\Documents\Diego\ofima\Desarrollo\Lector Compra\XML\SAPHETY_ad08001323020252200000425.xml).
+
+
+2/06/2022 1:51:48 p. m.
+--Inicia adecuacion del Nodo resultante 
+
+
+2/06/2022 1:51:48 p. m.
+--Inicia proceso de extraer informacion Emisor.
+
+
+2/06/2022 1:51:48 p. m.
+--Finaliza proceso de extraer informacion Emisor :
+
+
+2/06/2022 1:52:03 p. m.
+--Inicia proceso de validacion de documento Adquiriente: (C:\Users\Hogar\Documents\Diego\ofima\Desarrollo\Lector Compra\XML\VILA-ad08110020620172200000014.xml).
+
+
+2/06/2022 1:52:03 p. m.
+--Finaliza proceso de captura de documento adquiriente: (1017224525).
+
+
+2/06/2022 1:52:05 p. m.
+--Inicia proceso de extraer informacion para el documento: (C:\Users\Hogar\Documents\Diego\ofima\Desarrollo\Lector Compra\XML\VILA-ad08110020620172200000014.xml).
+
+
+2/06/2022 1:52:05 p. m.
+--Inicia adecuacion del Nodo resultante 
+
+
+2/06/2022 1:52:05 p. m.
+--Inicia proceso de extraer informacion Emisor.
+
+
+2/06/2022 1:52:05 p. m.
+--Finaliza proceso de extraer informacion Emisor :

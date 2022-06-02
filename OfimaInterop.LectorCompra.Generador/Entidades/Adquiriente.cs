@@ -8,5 +8,6 @@ namespace OfimaInterop.LectorCompra.Generador.Entidades
 {
     public class Adquiriente
     {
+        public int Nit { get; set; }
     }
 }
