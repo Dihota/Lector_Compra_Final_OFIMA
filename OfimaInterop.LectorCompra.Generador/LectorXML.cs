@@ -51,7 +51,7 @@ namespace OfimaInterop.LectorCompra.Generador
                 else
                 {
                     //Mensaje que indica que el documento no se examina, por que no es una factura de compra
-                    LogSeguimientoLectorCompra("--No se trata el XML: ( " + item.nombreXML + ".xml ), Nit no corresponde con el almacenado en NITCIA.", Ruta);
+                    LogSeguimientoLectorCompra("--No se trata el XML: ( " + item.nombreXML + ".xml ), Nit no corresponde con el registrado en NITCIA.", Ruta);
                 }
 
             }
@@ -97,7 +97,7 @@ namespace OfimaInterop.LectorCompra.Generador
             ReadXML.Load(RutaXML);
             
             //Se guarda mensaje en log.
-            LogSeguimientoLectorCompra("--Inicia validacion de documento Adquiriente.", Ruta);
+            LogSeguimientoLectorCompra("--Inicia validacion del documento del Adquiriente.", Ruta);
 
             //Se comienza a rrecorrer los nodo del XML.
             foreach (XmlNode N1 in ReadXML.DocumentElement.ChildNodes)
@@ -130,7 +130,7 @@ namespace OfimaInterop.LectorCompra.Generador
             }
 
             //Se guarda mensaje en log.
-            LogSeguimientoLectorCompra("--Se captura de documento del adquiriente: (" + NewAdquiriente.Nit + ").", Ruta);
+            LogSeguimientoLectorCompra("--Se captura documento del adquiriente: (" + NewAdquiriente.Nit + ").", Ruta);
 
             //Se retorna el objeto adquiriente.
             return NewAdquiriente.Nit;
@@ -359,14 +359,25 @@ namespace OfimaInterop.LectorCompra.Generador
             }
         }
 
+        //Metodo para extraer el nombre del xml de la ruta.
         public static string stringBetween(string Source, string Start, string End)
         {
+            // Se declara variable para almacenar el nombre del xml
             string result = "";
+
+            //Se valida si el texto de inicio y final, estan dentro de la cadena de texto
             if (Source.Contains(Start) && Source.Contains(End))
             {
+                //Se declara variable para determinar la posicion de la palabra inicial.
                 int StartIndex = Source.IndexOf(Start, 0) + Start.Length;
+
+                //Se declara variable para determinar la posicion de la palabra Final.
                 int EndIndex = Source.IndexOf(End, StartIndex);
+
+                //Se quita de la cadena el "\". 
                 result = Source.Substring(StartIndex, EndIndex - StartIndex);
+                result = result.Replace("\\", "");
+                
                 return result;
             }
 
