@@ -29,6 +29,7 @@ namespace OfimaInterop.LectorCompra.Generador
         //Metodo para todo el proceso de el lector de compras 
         public string LectorCompras(string Carpeta, int Nit)
         {
+           
             //Se inicializa variable que almacenara el nit del XML.
             int NitXML = 0;
 
@@ -45,8 +46,11 @@ namespace OfimaInterop.LectorCompra.Generador
                 //Se valida si el Nit del XML, corresponde con el nit de la empresa, para gestionar XML.
                 if (Nit == NitXML)
                 {
-                    //Se capturan los datos del emisor
+                    //Se capturan los datos del emisor.
                     LectorEmisor(item.RutaXML);
+
+                    //Se captura los datos del detalle del documento.
+                    LectorDetalle(item.RutaXML);
                 }
                 else
                 {
@@ -184,6 +188,50 @@ namespace OfimaInterop.LectorCompra.Generador
             return NewEmisor;
         }
 
+        //Metodo para obtener los datos del Detalle del Documento.
+        public dynamic LectorDetalle(string RutaXML)
+        {
+            DetalleDocumento NewDetalle = new DetalleDocumento();
+
+            //Se inicializa la variable encargada de salir de los ciclos
+            SalidaXML = 0;
+
+            XmlDocument XmlRead = new XmlDocument();
+            XmlRead.Load(RutaXML);
+
+            //Se comienza a llenar la informacion por archivo
+            LogSeguimientoLectorCompra("--Inicia proceso de extraer informacion del detalle del XML.", Ruta);
+
+            //Se recorre el XML, para capturar los datos del emisor
+            foreach (XmlNode N1 in XmlRead.DocumentElement.ChildNodes)
+            {
+                if (N1.Name == "cac:Attachment")
+                {
+                    foreach (XmlNode N2 in N1.ChildNodes)
+                    {
+                        foreach (XmlNode N3 in N2.ChildNodes)
+                        {
+                            if (N3.Name == "cbc:Description")
+                            {
+                                //Se captura el nodo u se asigna a una variable
+                                Nodo = N3.InnerText;
+                                SalidaXML = SalidaXML + 1;
+
+                                //Se invoca metodo que remplaza los valores no necesarios en el XML nuevo
+                                string NodoAuxiliar = Replace(Nodo);
+
+                                //Se invoca el LectorEmisorAuxiliar, para que lea los valores del nuevo XML
+                                LectorDetalleAuxiliar(NodoAuxiliar, NewDetalle);
+
+                            }
+                        }
+                    }
+                }
+            }
+
+            return "";
+        }
+
         //Se captura la informacion del emisor en el XML
         public Emisor LectorEmisorAuxiliar(string NewXML, Emisor emisor)
         {
@@ -312,9 +360,101 @@ namespace OfimaInterop.LectorCompra.Generador
 
         }
 
+        //Se captura la informacion del emisor en el XML
+        public DetalleDocumento LectorDetalleAuxiliar(string NewXML, DetalleDocumento detalle)
+        {
+            // 
+            XmlDocument ReadXML = new XmlDocument();
+            ReadXML.LoadXml(NewXML);
+
+            // 
+            foreach (XmlNode N1 in ReadXML.DocumentElement.ChildNodes)
+            {
+                switch (N1.Name)
+                {
+                    case "cbc:ID":
+                        detalle.NroDcto = N1.InnerText;
+                        SalidaXML = SalidaXML + 1;
+                        break;
+
+                    case "cbc:UUID":
+                        detalle.CUDE = N1.InnerText;
+                        SalidaXML = SalidaXML + 1;
+                        break;
+
+                    case "cbc:IssueDate":
+                        detalle.FechaExpedicion = Convert.ToDateTime(N1.InnerText);
+                        SalidaXML = SalidaXML + 1;
+                        break;
+
+                    case "cbc:IssueTime":
+                        detalle.HoraExpedicion = N1.InnerText;
+                        break;
+
+                    case "cac:AccountingSupplierParty":
+                        foreach (XmlNode N2 in N1.ChildNodes)
+                        {
+                            if (N2.Name == "cac:Party")
+                            {
+                                foreach (XmlNode N3 in N2.ChildNodes)
+                                {
+
+                                    if (N3.Name == "cac:PartyLegalEntity")
+                                    {
+                                        foreach (XmlNode N4 in N3.ChildNodes)
+                                        {
+                                            switch (N4.Name)
+                                            {
+                                                case "cbc:RegistrationName":
+                                                    detalle.NombreProveedor = N4.InnerText;
+                                                    SalidaXML = SalidaXML + 1;
+                                                    break;
+
+                                                case "cbc:CompanyID":
+                                                    detalle.NitProveedor = N4.InnerText;
+                                                    SalidaXML = SalidaXML + 1;
+                                                    break;
+
+                                                case "cac:CorporateRegistrationScheme":
+                                                    foreach (XmlNode N5 in N4.ChildNodes)
+                                                    {
+                                                        detalle.TipoDcto = N5.InnerText;
+                                                        string Nrodcto = detalle.NroDcto;
+                                                        detalle.NroDcto = Nrodcto.Replace(detalle.TipoDcto, "");
+                                                        SalidaXML = SalidaXML + 1;
+                                                        break;
+                                                    }
+                                                    break;
+
+                                                default:
+                                                    break;
+                                            }
+
+                                        }
+                                    }
+
+                                    if (SalidaXML == 7) { break; }
+
+                                }
+                            }
+                            if (SalidaXML == 7) { break; }
+                        }
+                        break;
+
+                    default:
+                        break;
+                }
+            }
+
+            if (SalidaXML == 7)
+            {
+                detalle.Actualizar = true;
+            }
+
+            return detalle;
+        }
 
         //Metodo encargado de quitar las etiquetas que no son requeridas en el nuevo xml.
-
         public string Replace(string Nodo)
         {
             try
