@@ -4,3 +4,9 @@ C:\Users\Hogar\Documents\Diego\ofima\Desarrollo\Lector Compra\Proyectos NET\Lect
 C:\Users\Hogar\Documents\Diego\ofima\Desarrollo\Lector Compra\Proyectos NET\Lector_Compra_Final_OFIMA\OfimaInterop.LectorCompra.Generador\obj\Debug\OfimaInterop.LectorCompra.Generador.csproj.CoreCompileInputs.cache
 C:\Users\Hogar\Documents\Diego\ofima\Desarrollo\Lector Compra\Proyectos NET\Lector_Compra_Final_OFIMA\OfimaInterop.LectorCompra.Generador\obj\Debug\OfimaInterop.LectorCompra.Generador.dll
 C:\Users\Hogar\Documents\Diego\ofima\Desarrollo\Lector Compra\Proyectos NET\Lector_Compra_Final_OFIMA\OfimaInterop.LectorCompra.Generador\obj\Debug\OfimaInterop.LectorCompra.Generador.pdb
+C:\Users\Hogar\OneDrive\Documents\Documentos\Diego\ofima\Desarrollo\Lector Compra\Proyectos NET\Lector_Compra_Final_OFIMA\OfimaInterop.LectorCompra.Generador\obj\Debug\OfimaInterop.LectorCompra.Generador.csproj.AssemblyReference.cache
+C:\Users\Hogar\OneDrive\Documents\Documentos\Diego\ofima\Desarrollo\Lector Compra\Proyectos NET\Lector_Compra_Final_OFIMA\OfimaInterop.LectorCompra.Generador\obj\Debug\OfimaInterop.LectorCompra.Generador.csproj.CoreCompileInputs.cache
+C:\Users\Hogar\OneDrive\Documents\Documentos\Diego\ofima\Desarrollo\Lector Compra\Proyectos NET\Lector_Compra_Final_OFIMA\OfimaInterop.LectorCompra.Generador\obj\Debug\OfimaInterop.LectorCompra.Generador.dll
+C:\Users\Hogar\OneDrive\Documents\Documentos\Diego\ofima\Desarrollo\Lector Compra\Proyectos NET\Lector_Compra_Final_OFIMA\OfimaInterop.LectorCompra.Generador\obj\Debug\OfimaInterop.LectorCompra.Generador.pdb
+C:\Users\Hogar\OneDrive\Documents\Documentos\Diego\ofima\Desarrollo\Lector Compra\Proyectos NET\Lector_Compra_Final_OFIMA\OfimaInterop.LectorCompra.Generador\bin\Debug\OfimaInterop.LectorCompra.Generador.dll
+C:\Users\Hogar\OneDrive\Documents\Documentos\Diego\ofima\Desarrollo\Lector Compra\Proyectos NET\Lector_Compra_Final_OFIMA\OfimaInterop.LectorCompra.Generador\bin\Debug\OfimaInterop.LectorCompra.Generador.pdb

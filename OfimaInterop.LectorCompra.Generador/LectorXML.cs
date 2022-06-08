@@ -27,9 +27,13 @@ namespace OfimaInterop.LectorCompra.Generador
 
 
         //Metodo para todo el proceso de el lector de compras 
-        public string LectorCompras(string Carpeta, int Nit)
+        public string LectorCompras(string Carpeta, int Nit, string Conexion)
         {
-           
+            Emisor emisor = new Emisor();
+
+            //se instancia objeto para guardar los datos obtenidos
+            GuardarXML guardar = new GuardarXML();
+
             //Se inicializa variable que almacenara el nit del XML.
             int NitXML = 0;
 
@@ -47,7 +51,25 @@ namespace OfimaInterop.LectorCompra.Generador
                 if (Nit == NitXML)
                 {
                     //Se capturan los datos del emisor.
-                    LectorEmisor(item.RutaXML);
+                    emisor = LectorEmisor(item.RutaXML);
+
+                    //Se crea variable que captura la respuesta del guardado del emisor.
+                    bool SaveEmisor;
+
+                    LogSeguimientoLectorCompra("--Inicia el proceso de almacenar informacion del emisor", Ruta);
+
+                    //Se guarda la informacion del emisor
+                    SaveEmisor = guardar.GuardarEmisor(Conexion, emisor);
+
+                    //se valida si la informacion del emisosr se guardo con exito.
+                    if (SaveEmisor is false)
+                    {
+                        LogSeguimientoLectorCompra("--No se logra almacenar los datos del emisor : " + emisor.Nit, Ruta);
+                    }
+                    else
+                    {
+                        LogSeguimientoLectorCompra("--Se almacena correctamente la informacion del emisor en las tablas (MTPROCLI y NIT) : " + emisor.Nit, Ruta);
+                    }
 
                     //Se captura los datos del detalle del documento.
                     LectorDetalle(item.RutaXML);
@@ -57,7 +79,6 @@ namespace OfimaInterop.LectorCompra.Generador
                     //Mensaje que indica que el documento no se examina, por que no es una factura de compra
                     LogSeguimientoLectorCompra("--No se trata el XML: ( " + item.nombreXML + ".xml ), Nit no corresponde con el registrado en NITCIA.", Ruta);
                 }
-
             }
 
             return "Finalizo";
@@ -90,6 +111,7 @@ namespace OfimaInterop.LectorCompra.Generador
         //Metodo para obtener la informacion del adquiriente 
         public int LectorAdquiriente(string RutaXML)
         {
+
             //Se crea un objeto del tipo adquiriente
             Adquiriente NewAdquiriente = new Adquiriente();
             
@@ -103,41 +125,45 @@ namespace OfimaInterop.LectorCompra.Generador
             //Se guarda mensaje en log.
             LogSeguimientoLectorCompra("--Inicia validacion del documento del Adquiriente.", Ruta);
 
-            //Se comienza a rrecorrer los nodo del XML.
-            foreach (XmlNode N1 in ReadXML.DocumentElement.ChildNodes)
+            try
             {
-                if (N1.Name == "cac:ReceiverParty")
+                //Se comienza a rrecorrer los nodo del XML.
+                foreach (XmlNode N1 in ReadXML.DocumentElement.ChildNodes)
                 {
-                    foreach (XmlNode N2 in N1.ChildNodes)
+                    if (N1.Name == "cac:ReceiverParty")
                     {
-                        foreach (XmlNode N3 in N2.ChildNodes)
+                        foreach (XmlNode N2 in N1.ChildNodes)
                         {
-                            if (N3.Name == "cbc:CompanyID")
+                            foreach (XmlNode N3 in N2.ChildNodes)
                             {
-                                NewAdquiriente.Nit = Convert.ToInt32(N3.InnerText);
-                                SalidaXML = SalidaXML = 1;
-                                break;
+                                if (N3.Name == "cbc:CompanyID")
+                                {
+                                    NewAdquiriente.Nit = Convert.ToInt32(N3.InnerText);
+                                    SalidaXML = SalidaXML = 1;
+                                    break;
+                                }
                             }
-                        }
-
-                        if (SalidaXML == 1)
-                        {
-                            break;
+                            if (SalidaXML == 1){break;}
                         }
                     }
+                    if (SalidaXML == 1) { break; }
                 }
 
-                if (SalidaXML == 1)
-                {
-                    break;
-                }
+                //Se guarda mensaje en log.
+                LogSeguimientoLectorCompra("--Se captura documento del adquiriente: (" + NewAdquiriente.Nit + ").", Ruta);
+
+                //Se retorna el objeto adquiriente.
+                return NewAdquiriente.Nit;
             }
+            catch (Exception error)
+            {
 
-            //Se guarda mensaje en log.
-            LogSeguimientoLectorCompra("--Se captura documento del adquiriente: (" + NewAdquiriente.Nit + ").", Ruta);
+                //Se guarda mensaje en log.
+                LogSeguimientoLectorCompra("--No se logra capturar documento del adquiriente: (" + NewAdquiriente.Nit + ", Error : " + error + ").", Ruta);
 
-            //Se retorna el objeto adquiriente.
-            return NewAdquiriente.Nit;
+                //Se retorna un cero, por que no se capturo nit del adquiriente.
+                return 0;
+            }
         }
 
         //Metodo para obtener los datos del Emisor(proveedor)
@@ -154,7 +180,7 @@ namespace OfimaInterop.LectorCompra.Generador
             ReadXML.Load(RutaXML);
 
             //Se comienza a llenar la informacion por archivo
-            LogSeguimientoLectorCompra("--Inicia proceso de extraer informacion del XML.", Ruta);
+            LogSeguimientoLectorCompra("--Inicia proceso de extraer informacion del XML, para el EMISOR.", Ruta);
 
             //Se recorre el XML, para capturar los datos del emisor
             foreach (XmlNode N1 in ReadXML.DocumentElement.ChildNodes)
@@ -167,7 +193,7 @@ namespace OfimaInterop.LectorCompra.Generador
                         {
                             if (N3.Name == "cbc:Description")
                             {
-                                //Se captura el nodo u se asigna a una variable
+                                //Se captura el nodo y se asigna a una variable
                                 Nodo = N3.InnerText;
                                 SalidaXML = SalidaXML + 1;
 
@@ -176,8 +202,6 @@ namespace OfimaInterop.LectorCompra.Generador
 
                                 //Se invoca el LectorEmisorAuxiliar, para que lea los valores del nuevo XML
                                 LectorEmisorAuxiliar(NodoAuxiliar, NewEmisor);
-
-                                
                             }
                         }
                     }
@@ -276,7 +300,7 @@ namespace OfimaInterop.LectorCompra.Generador
                                                             {
                                                                 switch (N5.Name)
                                                                 {
-                                                                    case "cbc:CityName":
+                                                                    case "cbc:ID":
                                                                             emisor.Ciudad = N5.InnerText;
                                                                             SalidaXML = SalidaXML + 1;
                                                                             break;
@@ -459,14 +483,14 @@ namespace OfimaInterop.LectorCompra.Generador
         {
             try
             {
+                //Se guarda el estado del proceso actual 
+                LogSeguimientoLectorCompra("--Inicia adecuacion del Nodo resultante ", Ruta);
+
                 //Se remplaza  informacion en el Nodo resultante
                 string Replace1 = Nodo.Replace("<![CDATA[", "");
 
                 //Se remplaza  informacion en el Nodo resultante
                 string Nodo2 = Replace1.Replace("]]>", "");
-
-                //Se guarda el estado del proceso actual 
-                LogSeguimientoLectorCompra("--Inicia adecuacion del Nodo resultante ", Ruta);
 
                 return Nodo2;
             }
@@ -475,7 +499,7 @@ namespace OfimaInterop.LectorCompra.Generador
                 //Se guarda el estado del proceso actual 
                 LogSeguimientoLectorCompra("--Se declina adecuacion del Nodo resultante, error : " + Error.Message, Ruta);
 
-                return Error.Message;
+                return "Error";
             }
         }
         
