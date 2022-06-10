@@ -1,16 +1,13 @@
 ﻿using OfimaInterop.LectorCompra.Generador.Entidades;
 using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.IO;
 using System.Xml;
 
 
 namespace OfimaInterop.LectorCompra.Generador
 {
-    
+
 
     public class LectorXML
     {
@@ -28,7 +25,8 @@ namespace OfimaInterop.LectorCompra.Generador
 
         //Metodo para todo el proceso de el lector de compras 
         public string LectorCompras(string Carpeta, int Nit, string Conexion)
-        {
+        {   
+            //Se crea un objeto del tipo emisor
             Emisor emisor = new Emisor();
 
             //se instancia objeto para guardar los datos obtenidos

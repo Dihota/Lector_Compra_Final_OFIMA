@@ -1,10 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using OfimaInterop.LectorCompra.Generador.Entidades;
+using System;
 using System.Data.SqlClient;
-using OfimaInterop.LectorCompra.Generador.Entidades;
 
 
 namespace OfimaInterop.LectorCompra.Generador
@@ -14,12 +10,12 @@ namespace OfimaInterop.LectorCompra.Generador
         //Se encarga de guardar la informacion del emisor en la Base de datos.
         public bool GuardarEmisor(string conex, Emisor emisor)
         {
-           
+                //Query SQL a ejecutar.  
                 string query = "exec Ofsp_AlmacenarEmisorXMLSEEC @pNit,@pNombre,@pDireccion,@pCiudad,@pPais,@pEmail,@pTelefono";
 
                 using( SqlConnection conexion = new SqlConnection(conex))
                 {
-                   LectorXML lector = new LectorXML();
+                    
                     SqlCommand cmd = new SqlCommand(query, conexion);
 
                     cmd.Parameters.AddWithValue("@pNit", emisor.Nit);
