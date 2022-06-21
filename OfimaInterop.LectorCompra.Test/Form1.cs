@@ -42,7 +42,7 @@ namespace OfimaInterop.LectorCompra.Test
         private void button1_Click(object sender, EventArgs e)
         {
             LectorXML lector = new LectorXML();
-            var Respuesta = lector.LectorCompras(TxtRuta.Text, 1017224525);
+            var Respuesta = lector.LectorCompras(TxtRuta.Text, 1017224525, @"Data Source=.\SQLEXPRESS;Initial Catalog=TODOTERRENO2017;User ID=Aplicacion_Ofimatica;Password=ofima");
 
             MessageBox.Show(Respuesta);
             //DgvVista.Columns.Add("nit", "Nit");
