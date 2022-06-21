@@ -29,11 +29,26 @@ namespace OfimaInterop.LectorCompra.Generador
             //Se crea un objeto del tipo emisor
             Emisor emisor = new Emisor();
 
+            //Se crea un objeto del tipo DettaleDocumeto 
+            DetalleDocumento detalle = new DetalleDocumento();
+
+            //Se crea un objeto del tipo Adquiriente
+            Adquiriente adquiriente = new Adquiriente();
+
+            //Se crea un objeto del tipo elemento
+            Elemento element = new Elemento();
+
+            //Se crea lista de elementos
+            List<Elemento> listaElementos = new List<Elemento>();
+
             //se instancia objeto para guardar los datos obtenidos
             GuardarXML guardar = new GuardarXML();
 
             //Se inicializa variable que almacenara el nit del XML.
             int NitXML = 0;
+
+            // se declara variable que almacena el xml que hay dentro del xml principal.
+            var NodoAuxiliar = "";
 
             //Llama el metodo encargado de identificar los diferentes xml en la ruta
             foreach (var item in ObtenerXML(Carpeta))
@@ -43,13 +58,13 @@ namespace OfimaInterop.LectorCompra.Generador
                 LogSeguimientoLectorCompra("--Inicia Analisis para el documento : ( " + item.nombreXML + ".xml).", Ruta);
 
                 //Se captura el Nit del adquiriente en el XML
-                NitXML = LectorAdquiriente(item.RutaXML);
+                NitXML = LectorAdquiriente(item.RutaXML, adquiriente, ref NodoAuxiliar);
 
                 //Se valida si el Nit del XML, corresponde con el nit de la empresa, para gestionar XML.
                 if (Nit == NitXML)
                 {
                     //Se capturan los datos del emisor.
-                    emisor = LectorEmisor(item.RutaXML);
+                    LectorEmisor(NodoAuxiliar, emisor);
 
                     //Se crea variable que captura la respuesta del guardado del emisor.
                     bool SaveEmisor;
@@ -63,6 +78,7 @@ namespace OfimaInterop.LectorCompra.Generador
                     if (SaveEmisor is false)
                     {
                         LogSeguimientoLectorCompra("--No se logra almacenar los datos del emisor : " + emisor.Nit, Ruta);
+                        return "Error";
                     }
                     else
                     {
@@ -70,7 +86,34 @@ namespace OfimaInterop.LectorCompra.Generador
                     }
 
                     //Se captura los datos del detalle del documento.
-                    LectorDetalle(item.RutaXML);
+                    LectorDetalle(NodoAuxiliar, detalle);
+
+                    if (detalle.Actualizar is true)
+                    {
+                        //Se captura la informacion de cada elemento de la compra
+                        listaElementos = ObtenerElementosXML(NodoAuxiliar, element);
+                        if (listaElementos.Count > 0)
+                        {
+                            //
+                            bool SaveDetalle;
+
+                            //Se llama el metodo encargado de guardar la informacion del detalle del XML
+                            SaveDetalle = guardar.GuardarDetalle(Conexion, detalle,listaElementos);
+                        }
+                        else
+                        {
+                            LogSeguimientoLectorCompra("--No se logra almacenar los datos del emisor : " + emisor.Nit, Ruta);
+                            return "Error";
+                        }
+
+                        LogSeguimientoLectorCompra("--Se almacena correctamente la informacion del detalle en la tabla (CARGARXML) : " , Ruta);
+                    }
+                    else
+                    {
+                        LogSeguimientoLectorCompra("--No se logra almacenar los datos del emisor : " + emisor.Nit, Ruta);
+                        return "Error";
+
+                    }
                 }
                 else
                 {
@@ -80,6 +123,122 @@ namespace OfimaInterop.LectorCompra.Generador
             }
 
             return "Finalizo";
+        }
+
+        ////Leer los elementos o productos del detalle del XML
+        public List<Elemento> ObtenerElementosXML(string RutaXML,Elemento Newelemento)
+        {
+            //Se inicializa variable para salir de los ciclos
+            SalidaXML = 0;
+
+            //Se crea lista que contendra los producots presente en la factura
+            List<Elemento> Lista = new List<Elemento>();
+
+            
+            XmlDocument ReadXML = new XmlDocument();
+            ReadXML.LoadXml(RutaXML);
+
+            //Se inicializa Ciclo encargado de capturar los productos de la factura
+            foreach (XmlNode N1 in ReadXML.DocumentElement.ChildNodes)
+            {
+                if (N1.Name == "cac:InvoiceLine")
+                {
+                    foreach (XmlNode N2 in N1.ChildNodes)
+                    {
+                        switch (N2.Name)
+                        {
+                            case "cbc:InvoicedQuantity":
+                                Newelemento.Cantidad = Convert.ToDecimal(N2.InnerText);
+                                SalidaXML = SalidaXML + 1;
+                                break;
+
+                            case "cac:TaxTotal":
+                                foreach (XmlNode N3 in N2.ChildNodes)
+                                {
+                                    if (N3.Name == "cac:TaxSubtotal")
+                                    {
+                                        foreach (XmlNode N4 in N3.ChildNodes)
+                                        {
+                                            if (N4.Name == "cac:TaxCategory")
+                                            {
+                                                foreach (XmlNode N5 in N4.ChildNodes)
+                                                {
+                                                    if (N5.Name == "cbc:Percent")
+                                                    {
+                                                        Newelemento.PorcentajeIVA = Convert.ToDecimal(N5.InnerText);
+                                                        SalidaXML = SalidaXML + 1;
+                                                    }
+                                                    if(SalidaXML == 2) { break;}
+                                                }
+                                            }
+                                        }
+                                    }
+                                }
+                                break;
+
+                            case "cac:Item":
+                                foreach (XmlNode N3 in N2.ChildNodes)
+                                {
+                                    switch (N3.Name)
+                                    {
+                                        case "cbc:Description":
+                                            Newelemento.NombreProducto = N3.InnerText;
+                                            SalidaXML = SalidaXML + 1;
+                                            break;
+
+                                        case "cac:SellersItemIdentification":
+                                            foreach (XmlNode N4 in N3.ChildNodes)
+                                            {
+                                                if (N4.Name == "cbc:ID")
+                                                {
+                                                    Newelemento.CodigoProducto = N4.InnerText;
+                                                    SalidaXML = SalidaXML + 1;
+                                                }
+                                            }
+                                            break;
+                                        default:
+                                            break;
+                                    }
+                                }
+                                break;
+
+                            case "cac:Price":
+                                foreach (XmlNode N3 in N2.ChildNodes)
+                                {
+                                    switch (N3.Name)
+                                    {
+                                        case "cbc:PriceAmount":
+                                            Newelemento.ValorUnit = Convert.ToDecimal(N3.InnerText);
+                                            SalidaXML = SalidaXML + 1;
+                                            break;
+
+                                        case "cbc:BaseQuantity":
+                                            Newelemento.Unidad = Convert.ToDecimal(N3.InnerText);
+                                            SalidaXML = SalidaXML + 1;
+                                            break;
+                                        default:
+                                            break;
+                                    }
+                                }
+                                break;
+
+                            default:
+                                break;
+                        }
+                    }
+                    //Se agregan valores a lista 
+                    Lista.Add(new Elemento
+                    {
+                        NombreProducto  = Newelemento.NombreProducto,
+                        CodigoProducto  = Newelemento.CodigoProducto,
+                        Unidad          = Newelemento.Unidad,
+                        Cantidad        = Newelemento.Cantidad,
+                        ValorUnit       = Newelemento.ValorUnit,
+                        PorcentajeIVA   = Newelemento.PorcentajeIVA
+                    });
+                }    
+            }
+            return Lista;
         }
 
         //Leer los archivos XML de la carpeta
@@ -107,12 +266,8 @@ namespace OfimaInterop.LectorCompra.Generador
         }
         
         //Metodo para obtener la informacion del adquiriente 
-        public int LectorAdquiriente(string RutaXML)
+        public int LectorAdquiriente(string RutaXML, Adquiriente NewAdquiriente, ref string NewNodo)
         {
-
-            //Se crea un objeto del tipo adquiriente
-            Adquiriente NewAdquiriente = new Adquiriente();
-            
             //Se inicializa variable para la salida de los ciclos.
             SalidaXML = 0;
 
@@ -128,23 +283,45 @@ namespace OfimaInterop.LectorCompra.Generador
                 //Se comienza a rrecorrer los nodo del XML.
                 foreach (XmlNode N1 in ReadXML.DocumentElement.ChildNodes)
                 {
-                    if (N1.Name == "cac:ReceiverParty")
+                    switch (N1.Name)
                     {
-                        foreach (XmlNode N2 in N1.ChildNodes)
-                        {
-                            foreach (XmlNode N3 in N2.ChildNodes)
+                        case "cac:ReceiverParty":
+                            foreach (XmlNode N2 in N1.ChildNodes)
                             {
-                                if (N3.Name == "cbc:CompanyID")
+                                foreach (XmlNode N3 in N2.ChildNodes)
                                 {
-                                    NewAdquiriente.Nit = Convert.ToInt32(N3.InnerText);
-                                    SalidaXML = SalidaXML = 1;
-                                    break;
+                                    if (N3.Name == "cbc:CompanyID")
+                                    {
+                                        NewAdquiriente.Nit = Convert.ToInt32(N3.InnerText);
+                                        SalidaXML = SalidaXML = 1;
+                                        break;
+                                    }
+                                }
+                                if (SalidaXML == 1) { break; }
+                            }
+                            break;
+                        case "cac:Attachment":
+                            foreach (XmlNode N2 in N1.ChildNodes)
+                            {
+                                foreach (XmlNode N3 in N2.ChildNodes)
+                                {
+                                    if (N3.Name == "cbc:Description")
+                                    {
+                                        //Se captura el nodo y se asigna a una variable
+                                        Nodo = N3.InnerText;;
+
+                                        //Se invoca metodo que remplaza los valores no necesarios en el XML nuevo
+                                        NewNodo = Replace(Nodo);
+
+                                        SalidaXML = SalidaXML + 1;
+                                    }
                                 }
                             }
-                            if (SalidaXML == 1){break;}
-                        }
+                            break;
+                        default:
+                            break;
                     }
-                    if (SalidaXML == 1) { break; }
+                    if (SalidaXML == 2) { break; }
                 }
 
                 //Se guarda mensaje en log.
@@ -165,93 +342,48 @@ namespace OfimaInterop.LectorCompra.Generador
         }
 
         //Metodo para obtener los datos del Emisor(proveedor)
-        public dynamic LectorEmisor(string RutaXML)
+        public dynamic LectorEmisor(string RutaXML,Emisor NewEmisor)
         {
-            //Se crea un nuevo objeto del tipo emisor
-            Emisor NewEmisor = new Emisor();
-
-            //Se inicializa la variable encargada de salir de los ciclos
-            SalidaXML = 0;
-
-            //Se crea un objeto del tipo XmlDocument, para abrir el xml
-            XmlDocument ReadXML = new XmlDocument();
-            ReadXML.Load(RutaXML);
-
             //Se comienza a llenar la informacion por archivo
             LogSeguimientoLectorCompra("--Inicia proceso de extraer informacion del XML, para el EMISOR.", Ruta);
+            try
+            {
+                //Se invoca el LectorEmisorAuxiliar, para que lea los valores del nuevo XML
+                LectorEmisorAuxiliar(RutaXML, NewEmisor);
 
-            //Se recorre el XML, para capturar los datos del emisor
-            foreach (XmlNode N1 in ReadXML.DocumentElement.ChildNodes)
-            {  
-                if (N1.Name == "cac:Attachment")
-                {
-                    foreach (XmlNode N2 in N1.ChildNodes)
-                    {
-                        foreach (XmlNode N3 in N2.ChildNodes)
-                        {
-                            if (N3.Name == "cbc:Description")
-                            {
-                                //Se captura el nodo y se asigna a una variable
-                                Nodo = N3.InnerText;
-                                SalidaXML = SalidaXML + 1;
-
-                                //Se invoca metodo que remplaza los valores no necesarios en el XML nuevo
-                                string NodoAuxiliar = Replace(Nodo);
-
-                                //Se invoca el LectorEmisorAuxiliar, para que lea los valores del nuevo XML
-                                LectorEmisorAuxiliar(NodoAuxiliar, NewEmisor);
-                            }
-                        }
-                    }
-                }    
+                //Se retorna objeto Emisor con la informacion encontrada en el XML
+                return NewEmisor;
             }
+            catch (Exception err)
+            {
+                LogSeguimientoLectorCompra("--No se logra capturar la informacion del EMISOR." + err, Ruta);
 
-            //Se retorna objeto Emisor con la informacion encontrada en el XML
-            return NewEmisor;
+                return string.Empty;
+            }
         }
 
         //Metodo para obtener los datos del Detalle del Documento.
-        public dynamic LectorDetalle(string RutaXML)
+        public dynamic LectorDetalle(string RutaXML, DetalleDocumento NewDetalle)
         {
-            DetalleDocumento NewDetalle = new DetalleDocumento();
-
-            //Se inicializa la variable encargada de salir de los ciclos
-            SalidaXML = 0;
-
-            XmlDocument XmlRead = new XmlDocument();
-            XmlRead.Load(RutaXML);
-
             //Se comienza a llenar la informacion por archivo
             LogSeguimientoLectorCompra("--Inicia proceso de extraer informacion del detalle del XML.", Ruta);
 
-            //Se recorre el XML, para capturar los datos del emisor
-            foreach (XmlNode N1 in XmlRead.DocumentElement.ChildNodes)
+            try
             {
-                if (N1.Name == "cac:Attachment")
-                {
-                    foreach (XmlNode N2 in N1.ChildNodes)
-                    {
-                        foreach (XmlNode N3 in N2.ChildNodes)
-                        {
-                            if (N3.Name == "cbc:Description")
-                            {
-                                //Se captura el nodo u se asigna a una variable
-                                Nodo = N3.InnerText;
-                                SalidaXML = SalidaXML + 1;
+                //Se invoca el LectorEmisorAuxiliar, para que lea los valores del nuevo XML
+                LectorDetalleAuxiliar(RutaXML, NewDetalle);
 
-                                //Se invoca metodo que remplaza los valores no necesarios en el XML nuevo
-                                string NodoAuxiliar = Replace(Nodo);
+                //Se indica que los datos se pueden actualizar
+                NewDetalle.Actualizar = true;
 
-                                //Se invoca el LectorEmisorAuxiliar, para que lea los valores del nuevo XML
-                                LectorDetalleAuxiliar(NodoAuxiliar, NewDetalle);
-
-                            }
-                        }
-                    }
-                }
+                return NewDetalle;
             }
+            catch (Exception Err)
+            {
+                LogSeguimientoLectorCompra("--No se logra extraer informacion del detalle del XML." + Err, Ruta);
 
-            return "";
+                return string.Empty;
+            }
         }
 
         //Se captura la informacion del emisor en el XML

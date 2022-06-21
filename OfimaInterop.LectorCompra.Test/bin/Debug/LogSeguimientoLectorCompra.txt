@@ -1,0 +1,588 @@
+
+
+10/06/2022 9:14:25 a. m.
+-----------------------------------------------------------------------------------------
+
+
+10/06/2022 9:14:25 a. m.
+--Inicia Analisis para el documento : ( VILA-ad08110020620172200000014.xml).
+
+
+10/06/2022 9:14:25 a. m.
+--Inicia validacion del documento del Adquiriente.
+
+
+10/06/2022 9:14:25 a. m.
+--Se captura documento del adquiriente: (1017224525).
+
+
+10/06/2022 9:14:25 a. m.
+--Inicia proceso de extraer informacion del XML, para el EMISOR.
+
+
+10/06/2022 9:14:25 a. m.
+--Inicia adecuacion del Nodo resultante 
+
+
+10/06/2022 9:14:25 a. m.
+--Inicia proceso de extraer informacion del EMISOR.
+
+
+10/06/2022 9:14:25 a. m.
+--Finaliza proceso de extraer informacion del EMISOR.
+
+
+10/06/2022 9:14:25 a. m.
+--Inicia el proceso de almacenar informacion del emisor
+
+
+10/06/2022 9:14:55 a. m.
+--Se almacena correctamente la informacion del emisor en las tablas (MTPROCLI y NIT) : 811002062-8
+
+
+10/06/2022 9:14:55 a. m.
+--Inicia proceso de extraer informacion del detalle del XML.
+
+
+10/06/2022 9:14:55 a. m.
+--Inicia adecuacion del Nodo resultante 
+
+
+17/06/2022 2:04:44 p. m.
+-----------------------------------------------------------------------------------------
+
+
+17/06/2022 2:04:44 p. m.
+--Inicia Analisis para el documento : ( VILA-ad08110020620172200000014.xml).
+
+
+17/06/2022 2:04:44 p. m.
+--Inicia validacion del documento del Adquiriente.
+
+
+17/06/2022 2:04:44 p. m.
+--Se captura documento del adquiriente: (1017224525).
+
+
+17/06/2022 2:04:44 p. m.
+--Inicia proceso de extraer informacion del XML, para el EMISOR.
+
+
+17/06/2022 2:04:44 p. m.
+--Inicia adecuacion del Nodo resultante 
+
+
+17/06/2022 2:04:44 p. m.
+--Inicia proceso de extraer informacion del EMISOR.
+
+
+17/06/2022 2:04:44 p. m.
+--Finaliza proceso de extraer informacion del EMISOR.
+
+
+17/06/2022 2:04:44 p. m.
+--Inicia el proceso de almacenar informacion del emisor
+
+
+17/06/2022 2:06:10 p. m.
+-----------------------------------------------------------------------------------------
+
+
+17/06/2022 2:06:11 p. m.
+--Inicia Analisis para el documento : ( VILA-ad08110020620172200000014.xml).
+
+
+17/06/2022 2:06:26 p. m.
+--Inicia validacion del documento del Adquiriente.
+
+
+17/06/2022 2:06:57 p. m.
+--Se captura documento del adquiriente: (1017224525).
+
+
+17/06/2022 2:07:19 p. m.
+--Inicia proceso de extraer informacion del XML, para el EMISOR.
+
+
+17/06/2022 2:07:27 p. m.
+--Inicia adecuacion del Nodo resultante 
+
+
+17/06/2022 2:07:27 p. m.
+--Inicia proceso de extraer informacion del EMISOR.
+
+
+17/06/2022 2:07:27 p. m.
+--Finaliza proceso de extraer informacion del EMISOR.
+
+
+17/06/2022 2:07:41 p. m.
+--Inicia el proceso de almacenar informacion del emisor
+
+
+17/06/2022 2:08:55 p. m.
+--Se almacena correctamente la informacion del emisor en las tablas (MTPROCLI y NIT) : 811002062-8
+
+
+17/06/2022 2:08:57 p. m.
+--Inicia proceso de extraer informacion del detalle del XML.
+
+
+17/06/2022 2:08:57 p. m.
+--Inicia adecuacion del Nodo resultante 
+
+
+17/06/2022 2:42:17 p. m.
+-----------------------------------------------------------------------------------------
+
+
+17/06/2022 2:42:17 p. m.
+--Inicia Analisis para el documento : ( VILA-ad08110020620172200000014.xml).
+
+
+17/06/2022 2:42:17 p. m.
+--Inicia validacion del documento del Adquiriente.
+
+
+17/06/2022 2:42:17 p. m.
+--Se captura documento del adquiriente: (1017224525).
+
+
+17/06/2022 2:42:17 p. m.
+--Inicia proceso de extraer informacion del XML, para el EMISOR.
+
+
+17/06/2022 2:42:17 p. m.
+--Inicia adecuacion del Nodo resultante 
+
+
+17/06/2022 2:42:17 p. m.
+--Inicia proceso de extraer informacion del EMISOR.
+
+
+17/06/2022 2:42:17 p. m.
+--Finaliza proceso de extraer informacion del EMISOR.
+
+
+17/06/2022 2:42:19 p. m.
+--Inicia el proceso de almacenar informacion del emisor
+
+
+17/06/2022 2:42:43 p. m.
+--Se almacena correctamente la informacion del emisor en las tablas (MTPROCLI y NIT) : 811002062-8
+
+
+17/06/2022 2:42:47 p. m.
+--Inicia proceso de extraer informacion del detalle del XML.
+
+
+17/06/2022 2:42:47 p. m.
+--Inicia adecuacion del Nodo resultante 
+
+
+17/06/2022 3:27:23 p. m.
+-----------------------------------------------------------------------------------------
+
+
+17/06/2022 3:27:35 p. m.
+--Inicia Analisis para el documento : ( VILA-ad08110020620172200000014.xml).
+
+
+17/06/2022 3:27:43 p. m.
+--Inicia validacion del documento del Adquiriente.
+
+
+17/06/2022 3:27:43 p. m.
+--Inicia adecuacion del Nodo resultante 
+
+
+17/06/2022 3:27:43 p. m.
+--Se captura documento del adquiriente: (1017224525).
+
+
+17/06/2022 3:41:08 p. m.
+-----------------------------------------------------------------------------------------
+
+
+17/06/2022 3:41:10 p. m.
+--Inicia Analisis para el documento : ( VILA-ad08110020620172200000014.xml).
+
+
+17/06/2022 3:41:10 p. m.
+--Inicia validacion del documento del Adquiriente.
+
+
+17/06/2022 3:41:10 p. m.
+--Inicia adecuacion del Nodo resultante 
+
+
+17/06/2022 3:41:10 p. m.
+--Se captura documento del adquiriente: (1017224525).
+
+
+17/06/2022 3:41:26 p. m.
+--Inicia proceso de extraer informacion del XML, para el EMISOR.
+
+
+17/06/2022 3:41:26 p. m.
+--Inicia proceso de extraer informacion del EMISOR.
+
+
+17/06/2022 3:41:26 p. m.
+--Finaliza proceso de extraer informacion del EMISOR.
+
+
+17/06/2022 3:41:44 p. m.
+--Inicia el proceso de almacenar informacion del emisor
+
+
+17/06/2022 3:44:00 p. m.
+--Se almacena correctamente la informacion del emisor en las tablas (MTPROCLI y NIT) : 811002062-8
+
+
+17/06/2022 3:57:46 p. m.
+-----------------------------------------------------------------------------------------
+
+
+17/06/2022 3:57:46 p. m.
+--Inicia Analisis para el documento : ( VILA-ad08110020620172200000014.xml).
+
+
+17/06/2022 3:57:46 p. m.
+--Inicia validacion del documento del Adquiriente.
+
+
+17/06/2022 3:57:46 p. m.
+--Inicia adecuacion del Nodo resultante 
+
+
+17/06/2022 3:57:46 p. m.
+--Se captura documento del adquiriente: (1017224525).
+
+
+17/06/2022 3:57:46 p. m.
+--Inicia proceso de extraer informacion del XML, para el EMISOR.
+
+
+17/06/2022 3:57:46 p. m.
+--Inicia proceso de extraer informacion del EMISOR.
+
+
+17/06/2022 3:57:46 p. m.
+--Finaliza proceso de extraer informacion del EMISOR.
+
+
+17/06/2022 3:57:46 p. m.
+--Inicia el proceso de almacenar informacion del emisor
+
+
+17/06/2022 3:58:08 p. m.
+--Se almacena correctamente la informacion del emisor en las tablas (MTPROCLI y NIT) : 811002062-8
+
+
+17/06/2022 3:58:12 p. m.
+--Inicia proceso de extraer informacion del detalle del XML.
+
+
+21/06/2022 9:12:36 a. m.
+-----------------------------------------------------------------------------------------
+
+
+21/06/2022 9:12:37 a. m.
+--Inicia Analisis para el documento : ( VILA-ad08110020620172200000014.xml).
+
+
+21/06/2022 9:12:41 a. m.
+--Inicia validacion del documento del Adquiriente.
+
+
+21/06/2022 9:13:01 a. m.
+--Inicia adecuacion del Nodo resultante 
+
+
+21/06/2022 9:13:14 a. m.
+--Se captura documento del adquiriente: (1017224525).
+
+
+21/06/2022 9:13:53 a. m.
+--Inicia proceso de extraer informacion del XML, para el EMISOR.
+
+
+21/06/2022 9:13:53 a. m.
+--Inicia proceso de extraer informacion del EMISOR.
+
+
+21/06/2022 9:13:53 a. m.
+--Finaliza proceso de extraer informacion del EMISOR.
+
+
+21/06/2022 9:14:03 a. m.
+--Inicia el proceso de almacenar informacion del emisor
+
+
+21/06/2022 9:14:35 a. m.
+--Se almacena correctamente la informacion del emisor en las tablas (MTPROCLI y NIT) : 811002062-8
+
+
+21/06/2022 9:14:40 a. m.
+--Inicia proceso de extraer informacion del detalle del XML.
+
+
+21/06/2022 11:25:38 a. m.
+-----------------------------------------------------------------------------------------
+
+
+21/06/2022 11:25:38 a. m.
+--Inicia Analisis para el documento : ( VILA-ad08110020620172200000014.xml).
+
+
+21/06/2022 11:25:38 a. m.
+--Inicia validacion del documento del Adquiriente.
+
+
+21/06/2022 11:25:38 a. m.
+--Inicia adecuacion del Nodo resultante 
+
+
+21/06/2022 11:25:38 a. m.
+--Se captura documento del adquiriente: (1017224525).
+
+
+21/06/2022 11:25:38 a. m.
+--Inicia proceso de extraer informacion del XML, para el EMISOR.
+
+
+21/06/2022 11:25:38 a. m.
+--Inicia proceso de extraer informacion del EMISOR.
+
+
+21/06/2022 11:25:38 a. m.
+--Finaliza proceso de extraer informacion del EMISOR.
+
+
+21/06/2022 11:25:38 a. m.
+--Inicia el proceso de almacenar informacion del emisor
+
+
+21/06/2022 11:26:10 a. m.
+--No se logra almacenar los datos del emisor : 811002062-8
+
+
+21/06/2022 11:26:35 a. m.
+-----------------------------------------------------------------------------------------
+
+
+21/06/2022 11:26:35 a. m.
+--Inicia Analisis para el documento : ( VILA-ad08110020620172200000014.xml).
+
+
+21/06/2022 11:26:36 a. m.
+--Inicia validacion del documento del Adquiriente.
+
+
+21/06/2022 11:26:36 a. m.
+--Inicia adecuacion del Nodo resultante 
+
+
+21/06/2022 11:26:36 a. m.
+--Se captura documento del adquiriente: (1017224525).
+
+
+21/06/2022 11:26:41 a. m.
+--Inicia proceso de extraer informacion del XML, para el EMISOR.
+
+
+21/06/2022 11:26:41 a. m.
+--Inicia proceso de extraer informacion del EMISOR.
+
+
+21/06/2022 11:26:41 a. m.
+--Finaliza proceso de extraer informacion del EMISOR.
+
+
+21/06/2022 11:26:47 a. m.
+--Inicia el proceso de almacenar informacion del emisor
+
+
+21/06/2022 11:27:18 a. m.
+--Se almacena correctamente la informacion del emisor en las tablas (MTPROCLI y NIT) : 811002062-8
+
+
+21/06/2022 11:27:22 a. m.
+--Inicia proceso de extraer informacion del detalle del XML.
+
+
+21/06/2022 11:43:42 a. m.
+-----------------------------------------------------------------------------------------
+
+
+21/06/2022 11:43:43 a. m.
+--Inicia Analisis para el documento : ( VILA-ad08110020620172200000014.xml).
+
+
+21/06/2022 11:43:44 a. m.
+--Inicia validacion del documento del Adquiriente.
+
+
+21/06/2022 11:43:44 a. m.
+--Inicia adecuacion del Nodo resultante 
+
+
+21/06/2022 11:43:44 a. m.
+--Se captura documento del adquiriente: (1017224525).
+
+
+21/06/2022 11:43:50 a. m.
+--Inicia proceso de extraer informacion del XML, para el EMISOR.
+
+
+21/06/2022 11:43:51 a. m.
+--Inicia proceso de extraer informacion del EMISOR.
+
+
+21/06/2022 11:43:51 a. m.
+--Finaliza proceso de extraer informacion del EMISOR.
+
+
+21/06/2022 11:44:04 a. m.
+--Inicia el proceso de almacenar informacion del emisor
+
+
+21/06/2022 11:44:43 a. m.
+--Se almacena correctamente la informacion del emisor en las tablas (MTPROCLI y NIT) : 811002062-8
+
+
+21/06/2022 11:44:48 a. m.
+--Inicia proceso de extraer informacion del detalle del XML.
+
+
+21/06/2022 11:45:00 a. m.
+--Se almacena correctamente la informacion del detalle en la tabla (CARGARXML) : 
+
+
+21/06/2022 11:45:15 a. m.
+-----------------------------------------------------------------------------------------
+
+
+21/06/2022 11:45:15 a. m.
+--Inicia Analisis para el documento : ( VILA-ad08110020620172200000014.xml).
+
+
+21/06/2022 11:45:15 a. m.
+--Inicia validacion del documento del Adquiriente.
+
+
+21/06/2022 11:45:15 a. m.
+--Inicia adecuacion del Nodo resultante 
+
+
+21/06/2022 11:45:15 a. m.
+--Se captura documento del adquiriente: (1017224525).
+
+
+21/06/2022 11:45:16 a. m.
+--Inicia proceso de extraer informacion del XML, para el EMISOR.
+
+
+21/06/2022 11:45:16 a. m.
+--Inicia proceso de extraer informacion del EMISOR.
+
+
+21/06/2022 11:45:16 a. m.
+--Finaliza proceso de extraer informacion del EMISOR.
+
+
+21/06/2022 11:45:16 a. m.
+--Inicia el proceso de almacenar informacion del emisor
+
+
+21/06/2022 11:45:40 a. m.
+--Se almacena correctamente la informacion del emisor en las tablas (MTPROCLI y NIT) : 811002062-8
+
+
+21/06/2022 11:45:40 a. m.
+--Inicia proceso de extraer informacion del detalle del XML.
+
+
+21/06/2022 11:46:00 a. m.
+--Se almacena correctamente la informacion del detalle en la tabla (CARGARXML) : 
+
+
+21/06/2022 1:58:14 p. m.
+-----------------------------------------------------------------------------------------
+
+
+21/06/2022 1:58:14 p. m.
+--Inicia Analisis para el documento : ( VILA-ad08110020620172200000014.xml).
+
+
+21/06/2022 1:58:14 p. m.
+--Inicia validacion del documento del Adquiriente.
+
+
+21/06/2022 1:58:14 p. m.
+--Inicia adecuacion del Nodo resultante 
+
+
+21/06/2022 1:58:14 p. m.
+--Se captura documento del adquiriente: (1017224525).
+
+
+21/06/2022 1:58:15 p. m.
+--Inicia proceso de extraer informacion del XML, para el EMISOR.
+
+
+21/06/2022 1:58:15 p. m.
+--Inicia proceso de extraer informacion del EMISOR.
+
+
+21/06/2022 1:58:15 p. m.
+--Finaliza proceso de extraer informacion del EMISOR.
+
+
+21/06/2022 1:58:16 p. m.
+--Inicia el proceso de almacenar informacion del emisor
+
+
+21/06/2022 2:08:36 p. m.
+-----------------------------------------------------------------------------------------
+
+
+21/06/2022 2:08:36 p. m.
+--Inicia Analisis para el documento : ( VILA-ad08110020620172200000014.xml).
+
+
+21/06/2022 2:08:36 p. m.
+--Inicia validacion del documento del Adquiriente.
+
+
+21/06/2022 2:08:36 p. m.
+--Inicia adecuacion del Nodo resultante 
+
+
+21/06/2022 2:08:36 p. m.
+--Se captura documento del adquiriente: (1017224525).
+
+
+21/06/2022 2:08:38 p. m.
+--Inicia proceso de extraer informacion del XML, para el EMISOR.
+
+
+21/06/2022 2:08:38 p. m.
+--Inicia proceso de extraer informacion del EMISOR.
+
+
+21/06/2022 2:08:38 p. m.
+--Finaliza proceso de extraer informacion del EMISOR.
+
+
+21/06/2022 2:08:38 p. m.
+--Inicia el proceso de almacenar informacion del emisor
+
+
+21/06/2022 2:08:47 p. m.
+--Se almacena correctamente la informacion del emisor en las tablas (MTPROCLI y NIT) : 811002062-8
+
+
+21/06/2022 2:08:59 p. m.
+--Inicia proceso de extraer informacion del detalle del XML.
