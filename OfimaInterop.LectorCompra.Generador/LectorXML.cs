@@ -99,6 +99,13 @@ namespace OfimaInterop.LectorCompra.Generador
 
                             //Se llama el metodo encargado de guardar la informacion del detalle del XML
                             SaveDetalle = guardar.GuardarDetalle(Conexion, detalle,listaElementos);
+
+                            if (SaveDetalle is false)
+                            {
+                                LogSeguimientoLectorCompra("--No se logra almacenar los datos del detalle: ", Ruta);
+                                return "Error";
+                            }
+
                         }
                         else
                         {
@@ -148,7 +155,7 @@ namespace OfimaInterop.LectorCompra.Generador
                         switch (N2.Name)
                         {
                             case "cbc:InvoicedQuantity":
-                                Newelemento.Cantidad = Convert.ToDecimal(N2.InnerText);
+                                Newelemento.Cantidad = N2.InnerText;
                                 SalidaXML = SalidaXML + 1;
                                 break;
 
@@ -165,7 +172,7 @@ namespace OfimaInterop.LectorCompra.Generador
                                                 {
                                                     if (N5.Name == "cbc:Percent")
                                                     {
-                                                        Newelemento.PorcentajeIVA = Convert.ToDecimal(N5.InnerText);
+                                                        Newelemento.PorcentajeIVA = N5.InnerText;
                                                         SalidaXML = SalidaXML + 1;
                                                     }
                                                     if(SalidaXML == 2) { break;}
@@ -208,12 +215,12 @@ namespace OfimaInterop.LectorCompra.Generador
                                     switch (N3.Name)
                                     {
                                         case "cbc:PriceAmount":
-                                            Newelemento.ValorUnit = Convert.ToDecimal(N3.InnerText);
+                                            Newelemento.ValorUnit = N3.InnerText;
                                             SalidaXML = SalidaXML + 1;
                                             break;
 
                                         case "cbc:BaseQuantity":
-                                            Newelemento.Unidad = Convert.ToDecimal(N3.InnerText);
+                                            Newelemento.Unidad = N3.InnerText;
                                             SalidaXML = SalidaXML + 1;
                                             break;
                                         default:
@@ -461,10 +468,7 @@ namespace OfimaInterop.LectorCompra.Generador
                                                     default:
                                                         break;
                                                 }
-                                                if (SalidaXML == 6)
-                                                {
-                                                    break;
-                                                }
+                             
                                             }
                                             break;
 
@@ -537,7 +541,7 @@ namespace OfimaInterop.LectorCompra.Generador
                         break;
 
                     case "cbc:IssueDate":
-                        detalle.FechaExpedicion = Convert.ToDateTime(N1.InnerText);
+                        detalle.FechaExpedicion = N1.InnerText;
                         SalidaXML = SalidaXML + 1;
                         break;
 
