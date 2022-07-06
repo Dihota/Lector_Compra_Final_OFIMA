@@ -1,11 +1,11 @@
-﻿using OfimaInterop.LectorCompra.Generador.Entidades;
+﻿using OfimaInteropLectorCompra.Entidades;
 using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Xml;
 
 
-namespace OfimaInterop.LectorCompra.Generador
+namespace OfimaInteropLectorCompra
 {
 
 
@@ -24,7 +24,7 @@ namespace OfimaInterop.LectorCompra.Generador
 
 
         //Metodo para todo el proceso de el lector de compras 
-        public string LectorCompras(string Carpeta, int Nit, string Conexion)
+        public string LectorCompras(string Carpeta, int Nit, string Conexion, string Destino)
         {   
             //Se crea un objeto del tipo emisor
             Emisor emisor = new Emisor();
@@ -78,6 +78,7 @@ namespace OfimaInterop.LectorCompra.Generador
                     if (SaveEmisor is false)
                     {
                         LogSeguimientoLectorCompra("--No se logra almacenar los datos del emisor : " + emisor.Nit, Ruta);
+                        MoverArchivo(Carpeta, Destino, item.nombreXML,false);
                         return "Error";
                     }
                     else
@@ -90,19 +91,34 @@ namespace OfimaInterop.LectorCompra.Generador
 
                     if (detalle.Actualizar is true)
                     {
+                        //Se comienza a llenar la informacion por archivo
+                        LogSeguimientoLectorCompra("--Finaliza proceso de extraer informacion del detalle del XML.", Ruta);
+
                         //Se captura la informacion de cada elemento de la compra
                         listaElementos = ObtenerElementosXML(NodoAuxiliar, element);
                         if (listaElementos.Count > 0)
                         {
+                            //Se comienza a llenar la informacion por archivo
+                            LogSeguimientoLectorCompra("--Inicia proceso de almacenar informacion del detalle del XML.", Ruta);
                             //
                             bool SaveDetalle;
 
                             //Se llama el metodo encargado de guardar la informacion del detalle del XML
                             SaveDetalle = guardar.GuardarDetalle(Conexion, detalle,listaElementos);
+
+                            if (SaveDetalle is false)
+                            {
+                                LogSeguimientoLectorCompra("--No se logra almacenar los datos del detalle: ", Ruta);
+                                MoverArchivo(Carpeta, Destino, item.nombreXML, false);
+                                return "Error";
+                            }
+
+                            MoverArchivo(Carpeta, Destino, item.nombreXML, true);
                         }
                         else
                         {
                             LogSeguimientoLectorCompra("--No se logra almacenar los datos del emisor : " + emisor.Nit, Ruta);
+                            MoverArchivo(Carpeta, Destino, item.nombreXML, false);
                             return "Error";
                         }
 
@@ -111,6 +127,7 @@ namespace OfimaInterop.LectorCompra.Generador
                     else
                     {
                         LogSeguimientoLectorCompra("--No se logra almacenar los datos del emisor : " + emisor.Nit, Ruta);
+                        MoverArchivo(Carpeta, Destino, item.nombreXML, false);
                         return "Error";
 
                     }
@@ -119,8 +136,13 @@ namespace OfimaInterop.LectorCompra.Generador
                 {
                     //Mensaje que indica que el documento no se examina, por que no es una factura de compra
                     LogSeguimientoLectorCompra("--No se trata el XML: ( " + item.nombreXML + ".xml ), Nit no corresponde con el registrado en NITCIA.", Ruta);
+                    MoverArchivo(Carpeta, Destino, item.nombreXML, false);
+
                 }
+
+
             }
+
 
             return "Finalizo";
         }
@@ -148,7 +170,7 @@ namespace OfimaInterop.LectorCompra.Generador
                         switch (N2.Name)
                         {
                             case "cbc:InvoicedQuantity":
-                                Newelemento.Cantidad = Convert.ToDecimal(N2.InnerText);
+                                Newelemento.Cantidad = N2.InnerText;
                                 SalidaXML = SalidaXML + 1;
                                 break;
 
@@ -165,7 +187,7 @@ namespace OfimaInterop.LectorCompra.Generador
                                                 {
                                                     if (N5.Name == "cbc:Percent")
                                                     {
-                                                        Newelemento.PorcentajeIVA = Convert.ToDecimal(N5.InnerText);
+                                                        Newelemento.PorcentajeIVA = N5.InnerText;
                                                         SalidaXML = SalidaXML + 1;
                                                     }
                                                     if(SalidaXML == 2) { break;}
@@ -191,7 +213,10 @@ namespace OfimaInterop.LectorCompra.Generador
                                             {
                                                 if (N4.Name == "cbc:ID")
                                                 {
-                                                    Newelemento.CodigoProducto = N4.InnerText;
+                                                     
+                                                        Newelemento.CodigoProducto = N4.InnerText;
+                                                    
+                                                        
                                                     SalidaXML = SalidaXML + 1;
                                                 }
                                             }
@@ -208,12 +233,12 @@ namespace OfimaInterop.LectorCompra.Generador
                                     switch (N3.Name)
                                     {
                                         case "cbc:PriceAmount":
-                                            Newelemento.ValorUnit = Convert.ToDecimal(N3.InnerText);
+                                            Newelemento.ValorUnit = N3.InnerText;
                                             SalidaXML = SalidaXML + 1;
                                             break;
 
                                         case "cbc:BaseQuantity":
-                                            Newelemento.Unidad = Convert.ToDecimal(N3.InnerText);
+                                            Newelemento.Unidad = N3.InnerText;
                                             SalidaXML = SalidaXML + 1;
                                             break;
                                         default:
@@ -461,10 +486,7 @@ namespace OfimaInterop.LectorCompra.Generador
                                                     default:
                                                         break;
                                                 }
-                                                if (SalidaXML == 6)
-                                                {
-                                                    break;
-                                                }
+                             
                                             }
                                             break;
 
@@ -537,7 +559,7 @@ namespace OfimaInterop.LectorCompra.Generador
                         break;
 
                     case "cbc:IssueDate":
-                        detalle.FechaExpedicion = Convert.ToDateTime(N1.InnerText);
+                        detalle.FechaExpedicion = N1.InnerText;
                         SalidaXML = SalidaXML + 1;
                         break;
 
@@ -565,7 +587,7 @@ namespace OfimaInterop.LectorCompra.Generador
                                                     break;
 
                                                 case "cbc:CompanyID":
-                                                    detalle.NitProveedor = N4.InnerText;
+                                                    detalle.NitProveedor = N4.InnerText + "-" + N4.Attributes["schemeID"].Value;
                                                     SalidaXML = SalidaXML + 1;
                                                     break;
 
@@ -676,6 +698,41 @@ namespace OfimaInterop.LectorCompra.Generador
             }
 
             return result;
+        }
+
+        //Metodo para mover los archivos segun el estado
+        public void MoverArchivo(string origen, string destino, string archivo, bool tipo)
+        {
+            //Variable que define para donde se mueve el XML.
+            string RutaDestino;
+
+            //Variable que define donde se encuentra el XML.
+            string RutaOrigen = origen + @"\" + archivo + ".xml";
+            
+            //Se valida si el archivo se mueve a la cvarpeta actualizados o rechazados
+            if (tipo is true)
+            {
+                RutaDestino = destino + @"\Actualizados\" + archivo + ".xml";
+            }
+            else
+            {
+                RutaDestino = destino + @"\Rechazados\" + archivo + ".xml";
+            }
+
+            //Variable para saber si el archivo ya se encuentra en las carpetas
+            bool Result = File.Exists(RutaDestino);
+
+            //Si el archivo se encuentra, procede a eliminarlo de la ruta
+            if (Result == true)
+            {
+                File.Delete(RutaDestino);
+            }
+
+            //se copia el archivo de la ruta de origen a la nueva ruta
+            System.IO.File.Move(RutaOrigen, RutaDestino);
+
+            //Se almacena en el log que el archivo fue guardado.
+            LogSeguimientoLectorCompra("--El archivo : " + archivo + ", fue movido a la carpeta:" + RutaDestino, Ruta);
         }
 
     }

@@ -1,10 +1,10 @@
-﻿using OfimaInterop.LectorCompra.Generador.Entidades;
+﻿using OfimaInteropLectorCompra.Entidades;
 using System;
 using System.Collections.Generic;
 using System.Data.SqlClient;
 
 
-namespace OfimaInterop.LectorCompra.Generador
+namespace OfimaInteropLectorCompra
 {
     public class GuardarXML
     {
@@ -12,7 +12,7 @@ namespace OfimaInterop.LectorCompra.Generador
         public bool GuardarEmisor(string conex, Emisor emisor)
         {
                 //Query SQL a ejecutar.  
-                string query = "exec Ofsp_AlmacenarEmisorXMLSEEC @pNit,@pNombre,@pDireccion,@pCiudad,@pPais,@pEmail,@pTelefono";
+                string query = "exec Ofsp_ActualizarProveedordesdeXML @pNit,@pNombre,@pDireccion,@pCiudad,@pPais,@pEmail,@pTelefono";
 
                 using( SqlConnection conexion = new SqlConnection(conex))
                 {
@@ -44,7 +44,7 @@ namespace OfimaInterop.LectorCompra.Generador
         //Se encarga de guardar la informacion del detalle del XML en la Base de datos.
         public bool GuardarDetalle(string conex,DetalleDocumento detalle, List<Elemento> ListaElemento)
         {
-            string query = "exec Ofsp_AlmacenarDetalleXMLSEEC @pNitProveedor,@pNomProveedor,@pFechaExped,@pHoraEped,@pCUDE,@pTipoDcto,@pNroDcto,@pNomProducto,@pCodigoProducto,@pUnidad,@pCantidad,@pValorUnit,@pPorcentajeIVA";
+            string query = "exec Ofsp_ActualizarCargarXMLdesdeXML @pNitProveedor,@pNomProveedor,@pTipoDcto,@pNroDcto,@pCUDE,@pFechaExped,@pHoraEped,@pNomProducto,@pCodigoProducto,@pValorUnit,@pCantidad,@pPorcentajeIVA";
 
             bool estado = false;
 
@@ -53,20 +53,20 @@ namespace OfimaInterop.LectorCompra.Generador
                 using (SqlConnection conexion = new SqlConnection(conex))
                 {
 
+
                     SqlCommand cmd = new SqlCommand(query, conexion);
 
                     cmd.Parameters.AddWithValue("@pNitProveedor", detalle.NitProveedor);
                     cmd.Parameters.AddWithValue("@pNomProveedor", detalle.NombreProveedor);
-                    cmd.Parameters.AddWithValue("@pFechaExped", detalle.FechaExpedicion);
-                    cmd.Parameters.AddWithValue("@pHoraEped", detalle.HoraExpedicion);
-                    cmd.Parameters.AddWithValue("@pCUDE", detalle.CUDE);
                     cmd.Parameters.AddWithValue("@pTipoDcto", detalle.TipoDcto);
                     cmd.Parameters.AddWithValue("@pNroDcto", detalle.NroDcto);
+                    cmd.Parameters.AddWithValue("@pCUDE", detalle.CUDE);
+                    cmd.Parameters.AddWithValue("@pFechaExped", detalle.FechaExpedicion);
+                    cmd.Parameters.AddWithValue("@pHoraEped", detalle.HoraExpedicion);
                     cmd.Parameters.AddWithValue("@pNomProducto", Producto.NombreProducto);
                     cmd.Parameters.AddWithValue("@pCodigoProducto", Producto.CodigoProducto);
-                    cmd.Parameters.AddWithValue("@pUnidad", Producto.Unidad);
-                    cmd.Parameters.AddWithValue("@pCantidad", Producto.Cantidad);
                     cmd.Parameters.AddWithValue("@pValorUnit", Producto.ValorUnit);
+                    cmd.Parameters.AddWithValue("@pCantidad", Producto.Cantidad);
                     cmd.Parameters.AddWithValue("@pPorcentajeIVA", Producto.PorcentajeIVA);
 
                     try
@@ -80,7 +80,7 @@ namespace OfimaInterop.LectorCompra.Generador
                     catch (Exception )
                     {
                         estado = false;
-                        throw;   
+                        return false;   
                     }
                 }
             }

@@ -80,9 +80,9 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\OfimaInterop.LectorCompra.Generador\OfimaInterop.LectorCompra.Generador.csproj">
-      <Project>{9BDE517C-3BFA-4B26-883A-9F2B7609AAE6}</Project>
-      <Name>OfimaInterop.LectorCompra.Generador</Name>
+    <ProjectReference Include="..\OfimaInterop.LectorCompra.Generador\OfimaInteropLectorCompra.csproj">
+      <Project>{9bde517c-3bfa-4b26-883a-9f2b7609aae6}</Project>
+      <Name>OfimaInteropLectorCompra</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

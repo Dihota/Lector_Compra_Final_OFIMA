@@ -7,8 +7,8 @@
     <ProjectGuid>{9BDE517C-3BFA-4B26-883A-9F2B7609AAE6}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>OfimaInterop.LectorCompra.Generador</RootNamespace>
-    <AssemblyName>OfimaInterop.LectorCompra.Generador</AssemblyName>
+    <RootNamespace>OfimaInteropLectorCompra</RootNamespace>
+    <AssemblyName>OfimaInteropLectorCompra</AssemblyName>
     <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <Deterministic>true</Deterministic>
@@ -21,6 +21,7 @@
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+    <RegisterForComInterop>true</RegisterForComInterop>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>pdbonly</DebugType>
