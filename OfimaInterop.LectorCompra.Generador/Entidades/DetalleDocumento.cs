@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace OfimaInterop.LectorCompra.Generador.Entidades
+namespace OfimaInteropLectorCompra.Entidades
 {
     public class DetalleDocumento
     {

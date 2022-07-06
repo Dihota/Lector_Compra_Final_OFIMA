@@ -1,4 +1,6 @@
-﻿using OfimaInterop.LectorCompra.Generador;
+﻿
+
+using OfimaInteropLectorCompra;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -42,7 +44,7 @@ namespace OfimaInterop.LectorCompra.Test
         private void button1_Click(object sender, EventArgs e)
         {
             LectorXML lector = new LectorXML();
-            var Respuesta = lector.LectorCompras(TxtRuta.Text, 1017224525, @"Data Source=.\SQLEXPRESS;Initial Catalog=TODOTERRENO2017;User ID=Aplicacion_Ofimatica;Password=ofima");
+            var Respuesta = lector.LectorCompras(TxtRuta.Text, 800900502, @"Data Source=.\SQLEXPRESS;Initial Catalog=TODOTERRENO2017;User ID=Aplicacion_Ofimatica;Password=ofima", @"C:\Users\Hogar\OneDrive\Documents\Documentos\Diego\ofima\Desarrollo\Lector Compra\prueba movimiento\LECTORXML");
 
             MessageBox.Show(Respuesta);
             //DgvVista.Columns.Add("nit", "Nit");

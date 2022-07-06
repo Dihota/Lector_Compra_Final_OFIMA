@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace OfimaInterop.LectorCompra.Generador.Entidades
+namespace OfimaInteropLectorCompra.Entidades
 {
     public class Elemento
     {
@@ -14,6 +14,11 @@ namespace OfimaInterop.LectorCompra.Generador.Entidades
         public string ValorUnit { get; set; } 
         public string Cantidad { get; set; } 
         public string PorcentajeIVA { get; set; }
+
+        public Elemento()
+        {
+            CodigoProducto = "0";
+        }
 
     }
 }

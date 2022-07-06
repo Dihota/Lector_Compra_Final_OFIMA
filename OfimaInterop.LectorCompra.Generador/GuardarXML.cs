@@ -1,10 +1,10 @@
-﻿using OfimaInterop.LectorCompra.Generador.Entidades;
+﻿using OfimaInteropLectorCompra.Entidades;
 using System;
 using System.Collections.Generic;
 using System.Data.SqlClient;
 
 
-namespace OfimaInterop.LectorCompra.Generador
+namespace OfimaInteropLectorCompra
 {
     public class GuardarXML
     {
