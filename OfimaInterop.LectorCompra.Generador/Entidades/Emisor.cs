@@ -15,6 +15,8 @@ namespace OfimaInteropLectorCompra.Entidades
         public string Pais { get; set; }
         public string Email { get; set; }
         public string TeLefono { get; set; }
+        public string Clase { get; set; }
+        public string RegimenFis { get; set; }
 
     }
 }
