@@ -17,6 +17,7 @@ namespace OfimaInteropLectorCompra.Entidades
         public string CUDE { get; set; }
         public string FechaExpedicion { get; set; }
         public string HoraExpedicion { get; set; }
+        public string Currency { get; set; }
 
     }
 }
